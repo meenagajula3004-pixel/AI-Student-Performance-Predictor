@@ -21,12 +21,17 @@ st.set_page_config(
 
 
 if "student" not in st.session_state:
-
-    st.warning(
-        "⚠️ Please enter student details first"
-    )
-
-    st.stop()
+    st.session_state.student = {
+        "name": "Test User",
+        "study": 4,
+        "previous": 75,
+        "practice": 3,
+        "sleep": 7,
+        "mobile": 2,
+        "education": "B.Tech",
+        "board": "JNTU",
+        "cgpa": 8.5
+    }
 
 
 

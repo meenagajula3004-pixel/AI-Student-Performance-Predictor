@@ -195,7 +195,7 @@ def create_report(
     title_style = ParagraphStyle(
     "title_style",
     fontName="Helvetica-Bold",
-    fontSize=18,
+    fontSize=16,
     alignment=TA_CENTER,
     textColor=colors.white,
     leading=22,

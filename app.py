@@ -6,9 +6,33 @@ st.set_page_config(
     page_icon="🎓",
     layout="centered"
 )
+st.markdown("## ⚙️ How This System Works")
+
+st.markdown("""
+### 1️⃣ Data Collection  
+We generated a dataset of 5000 student records with academic and lifestyle factors.
+
+### 2️⃣ Data Processing  
+Cleaned and structured the dataset for training the model.
+
+### 3️⃣ Model Training  
+Used Random Forest Regression to learn patterns from student data.
+
+### 4️⃣ Input Parameters  
+User enters study habits like study hours, sleep, practice, etc.
+
+### 5️⃣ Prediction  
+Model predicts the final performance score.
+
+### 6️⃣ Output & Insights  
+System shows score, performance level, suggestions, and graphs.
+""")
+
+st.markdown("---")
 
 
-# ---------------- STYLE ----------------
+# ================= STYLE =================
+
 
 st.markdown("""
 <style>
@@ -18,32 +42,34 @@ st.markdown("""
 }
 
 
-.title{
+.main-title{
 
 background:linear-gradient(90deg,#2563eb,#7c3aed);
 
-padding:25px;
+padding:30px;
 
-border-radius:15px;
+border-radius:20px;
 
 color:white;
 
 text-align:center;
 
-font-size:36px;
+font-size:40px;
 
-font-weight:bold;
+font-weight:800;
 
 }
 
 
-.sub{
+.subtitle{
 
 text-align:center;
 
 color:#475569;
 
-font-size:18px;
+font-size:20px;
+
+margin-top:10px;
 
 }
 
@@ -52,9 +78,9 @@ div.stButton > button{
 
 width:100%;
 
-height:45px;
+height:50px;
 
-border-radius:10px;
+border-radius:12px;
 
 font-size:18px;
 
@@ -62,19 +88,19 @@ font-weight:bold;
 
 }
 
-
 </style>
 """,
 unsafe_allow_html=True)
 
 
 
-# ---------------- HEADER ----------------
+
+# ================= HEADER =================
 
 
 st.markdown(
 """
-<div class="title">
+<div class="main-title">
 
 🎓 AI Student Performance Predictor
 
@@ -84,9 +110,10 @@ unsafe_allow_html=True
 )
 
 
+
 st.markdown(
 """
-<div class="sub">
+<div class="subtitle">
 
 Machine Learning Based Student Success Analysis System
 
@@ -96,60 +123,301 @@ unsafe_allow_html=True
 )
 
 
+
 st.write("")
 
 st.divider()
 
-# ---------------- SIDEBAR ----------------
+
+
+# ================= SIDEBAR =================
+
 
 with st.sidebar:
+
 
     st.image(
         "https://cdn-icons-png.flaticon.com/512/3135/3135755.png",
         width=100
     )
 
+
     st.title("🎓 AI Predictor")
 
-    st.write(
-        """
-        ### Project Details
-        
-        **Project:**
-        AI Student Performance Predictor
-        
-        **Technology:**
-        - Python
-        - Machine Learning
-        - Streamlit
-        
-        **Algorithm Used:**
-        Random Forest
-        
-        **Dataset:**
-        Student Academic Dataset
-        
-        **Purpose:**
-        Predict student performance and
-        provide improvement suggestions.
-        """
-    )
+
+    st.markdown(
+"""
+### 📌 Project Details
+
+
+**Objective**
+
+Predict student academic performance
+using Artificial Intelligence.
+
+
+**Supported Students**
+
+✅ 10th Standard
+
+✅ Intermediate
+
+✅ B.Tech
+
+
+**Algorithm**
+
+🌲 Random Forest Regression
+
+
+**Input Factors**
+
+📚 Study Hours
+
+📝 Academic Score
+
+✍️ Practice Hours
+
+😴 Sleep
+
+📱 Mobile Usage
+
+
+**Technology**
+
+🐍 Python
+
+🤖 Machine Learning
+
+🎨 Streamlit
+
+"""
+)
+
 
     st.divider()
 
+
+    st.markdown(
+"""
+### 🤖 AI Workflow
+
+
+1️⃣ Collect Student Details
+
+
+2️⃣ Analyze Learning Behaviour
+
+
+3️⃣ Apply ML Model
+
+
+4️⃣ Generate Performance Report
+
+
+"""
+)
+
+
     st.info(
-        "🤖 AI Based Academic Analysis System"
+        "AI Based Academic Analysis System"
     )
 
-# ---------------- INPUT ----------------
 
 
-st.subheader("👤 Student Information")
+
+# ================= STUDENT DETAILS =================
+
+
+st.subheader(
+    "👤 Student Information"
+)
 
 
 
 name = st.text_input(
-    "Student Name"
+    "Enter Student Name"
+)
+
+
+
+education = st.selectbox(
+    "🎓 Select Education Level",
+
+    [
+        "10th Standard",
+        "Intermediate",
+        "B.Tech"
+    ]
+)
+
+
+
+# ================= BOARD =================
+
+
+if education == "10th Standard":
+
+
+    board = st.selectbox(
+
+        "🏫 Select Board",
+
+        [
+            "CBSE",
+            "ICSE",
+            "State Board",
+            "Other"
+        ]
+
+    )
+
+
+elif education == "Intermediate":
+
+
+    board = st.selectbox(
+
+        "🏫 Select Board",
+
+        [
+            "State Board",
+            "CBSE",
+            "Other"
+        ]
+
+    )
+
+
+else:
+
+
+    board = st.selectbox(
+
+        "🏛️ Select University",
+
+        [
+            "JNTU",
+            "Autonomous University",
+            "Other University"
+        ]
+
+    )
+
+
+
+
+# ================= ACADEMIC DETAILS =================
+
+
+st.subheader(
+    "📚 Academic Details"
+)
+
+
+
+cgpa = None
+
+
+
+if education == "B.Tech":
+
+
+    cgpa = st.number_input(
+
+        "🎯 Enter CGPA",
+
+        min_value=0.0,
+
+        max_value=10.0,
+
+        value=0.0,
+
+        step=0.1
+
+    )
+
+
+    previous = cgpa * 9.5
+
+
+
+    if cgpa > 0:
+
+        st.success(
+
+            f"Converted Percentage: {previous:.2f}%"
+
+        )
+
+
+
+else:
+
+
+    col1,col2 = st.columns(2)
+
+
+
+    with col1:
+
+
+        obtained = st.number_input(
+
+            "📝 Obtained Marks",
+
+            min_value=0,
+
+            value=0
+
+        )
+
+
+
+    with col2:
+
+
+        maximum = st.number_input(
+
+            "📊 Maximum Marks",
+
+            min_value=1,
+
+            value=100
+
+        )
+
+
+
+    previous = 0
+
+
+
+    if obtained > 0:
+
+
+        previous = (
+
+            obtained / maximum
+
+        ) * 100
+
+
+
+        st.success(
+
+            f"Calculated Percentage: {previous:.2f}%"
+
+        )
+
+
+
+
+# ================= LEARNING HABITS =================
+
+
+st.subheader(
+    "📊 Learning Habits"
 )
 
 
@@ -162,28 +430,35 @@ with col1:
 
 
     study = st.number_input(
+
         "📚 Study Hours / Day",
+
         min_value=0.0,
+
         max_value=15.0,
+
         value=0.0,
+
         step=0.5
+
     )
 
 
-    previous = st.number_input(
-        "📝 Previous Marks",
-        min_value=0,
-        max_value=100,
-        value=0
+
+    practice = st.number_input(
+
+        "✍️ Practice Hours / Day",
+
+        min_value=0.0,
+
+        max_value=15.0,
+
+        value=0.0,
+
+        step=0.5
+
     )
 
-
-    attendance = st.number_input(
-        "📅 Attendance %",
-        min_value=0,
-        max_value=100,
-        value=0
-    )
 
 
 
@@ -191,75 +466,123 @@ with col2:
 
 
     sleep = st.number_input(
-        "😴 Sleep Hours",
+
+        "😴 Sleep Hours / Day",
+
         min_value=0.0,
+
         max_value=12.0,
+
         value=0.0,
+
         step=0.5
+
     )
+
 
 
     mobile = st.number_input(
-        "📱 Mobile Usage Hours",
+
+        "📱 Mobile Usage Hours / Day",
+
         min_value=0.0,
+
         max_value=12.0,
+
         value=0.0,
+
         step=0.5
+
     )
+
 
 
 
 st.write("")
 
 
-# ---------------- BUTTON ----------------
+
+# ================= BUTTON =================
+
 
 
 if st.button(
-    "🚀 Analyze Student Performance"
+
+    "🚀 Generate AI Performance Report"
+
 ):
 
 
     if (
-        name=="" or
-        study==0 or
+
+        name.strip()=="" or
+
         previous==0 or
-        attendance==0 or
+
+        study==0 or
+
+        practice==0 or
+
         sleep==0 or
+
         mobile==0
+
     ):
 
 
         st.error(
-            "⚠️ Please fill all student details"
+
+            "⚠️ Please fill all details"
+
         )
+
 
 
     else:
 
 
-        st.session_state.student={
 
-            "name":name,
+        st.session_state.student = {
 
-            "study":study,
 
-            "previous":previous,
+            "name": name,
 
-            "attendance":attendance,
 
-            "sleep":sleep,
+            "education": education,
 
-            "mobile":mobile
+
+            "board": board,
+
+
+            "previous": previous,
+
+
+            "cgpa": cgpa,
+
+
+            "study": study,
+
+
+            "practice": practice,
+
+
+            "sleep": sleep,
+
+
+            "mobile": mobile
+
+
         }
 
 
 
+
         st.success(
-            "Analysis completed! Opening dashboard..."
+
+            "✅ Analysis Completed! Opening Dashboard..."
+
         )
 
 
-        st.switch_page(
-            "pages/result.py"
-        )
+
+        st.switch_page("pages/result.py")

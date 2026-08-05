@@ -6,29 +6,7 @@ st.set_page_config(
     page_icon="🎓",
     layout="centered"
 )
-st.markdown("## ⚙️ How This System Works")
 
-st.markdown("""
-### 1️⃣ Data Collection  
-We generated a dataset of 5000 student records with academic and lifestyle factors.
-
-### 2️⃣ Data Processing  
-Cleaned and structured the dataset for training the model.
-
-### 3️⃣ Model Training  
-Used Random Forest Regression to learn patterns from student data.
-
-### 4️⃣ Input Parameters  
-User enters study habits like study hours, sleep, practice, etc.
-
-### 5️⃣ Prediction  
-Model predicts the final performance score.
-
-### 6️⃣ Output & Insights  
-System shows score, performance level, suggestions, and graphs.
-""")
-
-st.markdown("---")
 
 
 # ================= STYLE =================

@@ -461,14 +461,12 @@ AI predicts future performance.
 # ================= PDF REPORT =================
 
 st.divider()
-
 st.subheader("📄 Download Student Report")
-
 
 if "pdf_ready" not in st.session_state:
     st.session_state.pdf_ready = False
     st.session_state.pdf_file = None
-
+    st.session_state.pdf_name = None   # ✅ add this
 
 if st.button("📄 Generate AI Report"):
 
@@ -486,17 +484,18 @@ if st.button("📄 Generate AI Report"):
     with open(file, "rb") as f:
         st.session_state.pdf_file = f.read()
 
+    st.session_state.pdf_name = file   # ✅ dynamic file name
     st.session_state.pdf_ready = True
 
     st.success("✅ Report Generated Successfully")
 
 
-# 👇 THIS WILL STAY VISIBLE AFTER CLICK
+# 👇 Always visible after generate
 if st.session_state.pdf_ready:
 
     st.download_button(
         label="⬇ Download AI Report PDF",
         data=st.session_state.pdf_file,
-        file_name="AI_Student_Performance_Report.pdf",
+        file_name=st.session_state.pdf_name,  # ✅ IMPORTANT FIX
         mime="application/pdf"
     )
